@@ -1,0 +1,9 @@
+[Core]
+Name = BeerBot
+Module = beerBot
+
+[Python]
+Version = 2+
+
+[Documentation]
+Description = Find me this beer !
