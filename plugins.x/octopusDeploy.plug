@@ -1,0 +1,6 @@
+[Core]
+Name = OctopusDeploy
+Module = octopusDeploy
+    
+[Documentation]
+Description = Octopus Deploy plugin
