@@ -11,7 +11,7 @@ class BeerBot(BotPlugin):
     min_err_version = '1.6.0'
 
     def get_configuration_template(self):
-        return {'BREWERY_DB_TOKEN': '00112233445566778899aabbccddeeff'}
+        return {'BREWERY_DB_TOKEN': 'XXXXX'}
 
     def configure(self, configuration):
         if configuration:

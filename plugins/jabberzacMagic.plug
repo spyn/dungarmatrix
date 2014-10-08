@@ -1,0 +1,9 @@
+[Core]
+Name = JabberzacMagic
+Module = jabberzacMagic
+
+[Python]
+Version = 2+
+
+[Documentation]
+Description = Imported from Dungarmatic trademark
