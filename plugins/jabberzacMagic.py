@@ -23,8 +23,8 @@ class JabberzacMagic(BotPlugin)
 		elif mess.getBody().find('girlfriend') != -1:
 			phrase = self.calculateChance({self.lang.ugettext('MY GIRLFRIEND'): 0.2, ':cloricus:': 0.1})
 		elif mess.getBody().find('awesome') != -1:
-        	chance = {':awesome:': 0.1, ':awesomelon:': 0.05}
-        	phrase = self.calculateChance(chance)
+			chance = {':awesome:': 0.1, ':awesomelon:': 0.05}
+			phrase = self.calculateChance(chance)
 		elif mess.getBody().find(':hfive:') != -1:
 			chance = {':hfive:': 0.99, ':awesome::hf::awesomelon:': 0.01}
 			phrase = self.calculateChance(chance)
