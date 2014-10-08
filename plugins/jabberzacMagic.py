@@ -26,14 +26,14 @@ class JabberzacMagic(BotPlugin)
         	chance = {':awesome:': 0.1, ':awesomelon:': 0.05}
         	phrase = self.calculateChance(chance)
 		elif mess.getBody().find(':hfive:') != -1:
-            chance = {':hfive:': 0.99, ':awesome::hf::awesomelon:': 0.01}
-        	phrase = self.calculateChance(chance)
+			chance = {':hfive:': 0.99, ':awesome::hf::awesomelon:': 0.01}
+			phrase = self.calculateChance(chance)
 		elif mess.getBody().find('alot') != -1:
-	        chance = {':eng101: "a lot"': 0.9, ':argh:': 0.1}
-        	phrase = self.calculateChance(chance)
-        elif mess.getBody().find('bad') != -1:
-            chance = {self.lang.ugettext('mlyp'): 0.2}
-            phrase = self.calculateChance(chance)
+			chance = {':eng101: "a lot"': 0.9, ':argh:': 0.1}
+			phrase = self.calculateChance(chance)
+		elif mess.getBody().find('bad') != -1:
+			chance = {self.lang.ugettext('mlyp'): 0.2}
+			phrase = self.calculateChance(chance)
 
         # url matches
 		elif mess.getBody().find('http') != -1:
