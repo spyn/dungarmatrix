@@ -16,10 +16,12 @@ class JabberzacMagic(BotPlugin)
     elif mess.getBody() == "the air speed velocity of an unladen swallow":
       phrase = "what do you mean, an African or European Swallow?"
     elif mess.getBody().find('what is') != -1:
-      phrase = self.calculateChance(
-        {"No idea, why dont you google it, fuck": 0.9, 
+      phrase = self.calculateChance( {"No idea, why dont you google it, fuck": 0.9, 
         mess.getBody().replace('what is','http://www.lmgtfy.com/?q='): 0.1}
       )
+    elif mess.getBody().find('feelings') != -1:
+      chance = {'i can\'t hold these feelings now' : 0.4, 'i can\'t just sit around' : 0.4}
+      phrase = self.calculateChance(chance)
     elif mess.getBody().find('girlfriend') != -1:
       phrase = self.calculateChance({self.lang.ugettext('MY GIRLFRIEND'): 0.2, ':cloricus:': 0.1})
     elif mess.getBody().find('awesome') != -1:
@@ -32,29 +34,56 @@ class JabberzacMagic(BotPlugin)
       chance = {':eng101: "a lot"': 0.9, ':argh:': 0.1}
       phrase = self.calculateChance(chance)
     elif mess.getBody().find('bad') != -1:
-      chance = {self.lang.ugettext('mlyp'): 0.2}
+      chance = {'mlyp': 0.2}
       phrase = self.calculateChance(chance)
 
-        # url matches
-        elif mess.getBody().find('http') != -1:
-            url = mess.getBody().group('url')
-            if url.find('imgurl') != -1:
-                phrase = self.calculateChance({'Jesus Christ :nws: that shit'): 0.01, 'thanks asshole i just got fired :mad:': 0.01, 'OMG hawt': 0.01})
-            elif mess.getBody().find('vidid') != -1:
-                vidid = mess.getBody().match.group('vidid')
-                rnd = random.random()
-                if rnd < 0.1:
-                    phrase = self.getRandomYoutubeComment(vidid)
-            else 
-                phrase = self.calculateChance({'pro-click zone': 0.05, 'not clicking that': 0.05, 'more like'+' http://bacolicio.us/'+url+' amirite'): 0.01 })
-        
-        else
-            # chance of saying a random thing after someone types something... chance of chances
-            chance = self.calculateChance({'yeah' : 0.05, 'nah' : 0.05})
-            if chance is not None:
-                random.seed()
-                random.choice("things")
-
+    # url matches
+    elif mess.getBody().find('http') != -1:
+        url = mess.getBody().group('url')
+        if url.find('imgurl') != -1:
+            phrase = self.calculateChance({'Jesus Christ :nws: that shit'): 0.01, 'thanks asshole i just got fired :mad:': 0.01, 'OMG hawt': 0.01})
+        elif mess.getBody().find('vidid') != -1:
+            vidid = mess.getBody().match.group('vidid')
+            rnd = random.random()
+            if rnd < 0.1:
+                phrase = self.getRandomYoutubeComment(vidid)
+        else 
+            phrase = self.calculateChance({'pro-click zone': 0.05, 'not clicking that': 0.05, 'more like'+' http://bacolicio.us/'+url+' amirite'): 0.01 })
+    
+    else
+        # chance of saying a random thing after someone types something... chance of chances
+        chance = self.calculateChance({True: 0.05})
+        if chance is not None:
+            c = 0.005
+            choice = {'welp': c,
+                      'guys, let\'s move to syndicate': c,
+                      'remedial saw me as a young version of himself!': c,
+                      'I joined triumvirate': c,
+                      ':dungar:': c,
+                      'yeah i dont think ill get that machariel back :(': c,
+                      'check out all these gistii a-types i just farmed': c,
+                      'i joined PL mainly because they fit my playstyle and level of talent': c,
+                      'triumvirate died :(': c,
+                      "Man I'm so close to finishing Cloaking V for those new blackops BSes. I can't wait.": c,
+                      'That angel bird has pictures of herself on the forums and if I wasn\'t so sure she\'s insane I\'d probably hit that :)' : c,
+                      #bencos
+                      'duke nukem came out when i was born i played the shit out of duke nukem 3d tho': c,
+                      'print spoolers get stuck every 2nd print': c,
+                      'do cows die of sound overdose ': c,
+                      'i have too much shit from when i was like 8 years old': c,
+                      'i think i need a keyboard with red switches or browns': c,
+                      'php is pretty good without libraries i\'ll give it that': c,
+                      'i dont know why people like beetroot it doesnt taste good + stains ur clothes': c,
+                      'you should be able to take electives for kernel and language design. you can likely take some from other unis too and still get credit': c,
+                      '2014-05-12T04:20:00+0100 who formats datetime like this :mad:': c,
+                      'time to nerd out about space all day': c,
+                      'what kind of tumblr administrator cant even upload a gif': c,
+                      'http://41.media.tumblr.com/b35323f9e355fc5db9c874bd35d8fb31/tumblr_n71fa6dLsv1tcu7e6o1_1280.jpg': c,
+                      '$6 shirt marked down to $4 cause of my sweet business contacts': c,
+                      'benco, pro code detective: no code is out of reach': c,
+                      'benco, coding illusionist: my ability to code is merely an illusion': c,
+            }
+            phrase = self.calculateChance(chance)
 
         # make shit happen
         if phrase is not None: 
