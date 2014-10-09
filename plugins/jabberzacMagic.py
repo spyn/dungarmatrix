@@ -2,63 +2,63 @@ import json
 from errbot import botcmd, BotPlugin
 
 class JabberzacMagic(BotPlugin)
-	min_err_version = '1.6.0'
+  min_err_version = '1.6.0'
 
-	def callback_message(self, conn, mess):
-		phrase = None;
+  def callback_message(self, conn, mess):
+    phrase = None;
 
-		if mess.getBody().find('world cup') != -1:
-			phrase = "o======<0♫♪♫♪♫♪♫♪♫♪♫♪♫♪♫♪♫♪♫♪♫♪♫♪♫♪♫♪♫♪♫♪♫"
-		elif mess.getBody().find('love') != -1:
-			phrase = "baby don't hurt me"
-		elif mess.getBody().find('the meaning of life') != -1:
-			phrase = "42"
-		elif mess.getBody() == "the air speed velocity of an unladen swallow":
-			phrase = "what do you mean, an African or European Swallow?"
-		elif mess.getBody().find('what is') != -1:
-			phrase = self.calculateChance(
-				{"No idea, why dont you google it, fuck": 0.9, 
-				mess.getBody().replace('what is','http://www.lmgtfy.com/?q='): 0.1}
-			)
-		elif mess.getBody().find('girlfriend') != -1:
-			phrase = self.calculateChance({self.lang.ugettext('MY GIRLFRIEND'): 0.2, ':cloricus:': 0.1})
-		elif mess.getBody().find('awesome') != -1:
-			chance = {':awesome:': 0.1, ':awesomelon:': 0.05}
-			phrase = self.calculateChance(chance)
-		elif mess.getBody().find(':hfive:') != -1:
-			chance = {':hfive:': 0.99, ':awesome::hf::awesomelon:': 0.01}
-			phrase = self.calculateChance(chance)
-		elif mess.getBody().find('alot') != -1:
-			chance = {':eng101: "a lot"': 0.9, ':argh:': 0.1}
-			phrase = self.calculateChance(chance)
-		elif mess.getBody().find('bad') != -1:
-			chance = {self.lang.ugettext('mlyp'): 0.2}
-			phrase = self.calculateChance(chance)
+    if mess.getBody().find('world cup') != -1:
+      phrase = "o======<0♫♪♫♪♫♪♫♪♫♪♫♪♫♪♫♪♫♪♫♪♫♪♫♪♫♪♫♪♫♪♫♪♫"
+    elif mess.getBody().find('love') != -1:
+      phrase = "baby don't hurt me"
+    elif mess.getBody().find('the meaning of life') != -1:
+      phrase = "42"
+    elif mess.getBody() == "the air speed velocity of an unladen swallow":
+      phrase = "what do you mean, an African or European Swallow?"
+    elif mess.getBody().find('what is') != -1:
+      phrase = self.calculateChance(
+        {"No idea, why dont you google it, fuck": 0.9, 
+        mess.getBody().replace('what is','http://www.lmgtfy.com/?q='): 0.1}
+      )
+    elif mess.getBody().find('girlfriend') != -1:
+      phrase = self.calculateChance({self.lang.ugettext('MY GIRLFRIEND'): 0.2, ':cloricus:': 0.1})
+    elif mess.getBody().find('awesome') != -1:
+      chance = {':awesome:': 0.1, ':awesomelon:': 0.05}
+      phrase = self.calculateChance(chance)
+    elif mess.getBody().find(':hfive:') != -1:
+      chance = {':hfive:': 0.99, ':awesome::hf::awesomelon:': 0.01}
+      phrase = self.calculateChance(chance)
+    elif mess.getBody().find('alot') != -1:
+      chance = {':eng101: "a lot"': 0.9, ':argh:': 0.1}
+      phrase = self.calculateChance(chance)
+    elif mess.getBody().find('bad') != -1:
+      chance = {self.lang.ugettext('mlyp'): 0.2}
+      phrase = self.calculateChance(chance)
 
         # url matches
-		elif mess.getBody().find('http') != -1:
-			url = mess.getBody().group('url')
-			if url.find('imgurl') != -1:
-				phrase = self.calculateChance({'Jesus Christ :nws: that shit'): 0.01, 'thanks asshole i just got fired :mad:': 0.01, 'OMG hawt': 0.01})
-	        elif mess.getBody().find('vidid') != -1:
-	        	vidid = mess.getBody().match.group('vidid')
-	        	rnd = random.random()
-	        	if rnd < 0.1:
-	            	phrase = self.getRandomYoutubeComment(vidid)
-			else 
-				phrase = self.calculateChance({'pro-click zone': 0.05, 'not clicking that': 0.05, 'more like'+' http://bacolicio.us/'+url+' amirite'): 0.01 })
+        elif mess.getBody().find('http') != -1:
+            url = mess.getBody().group('url')
+            if url.find('imgurl') != -1:
+                phrase = self.calculateChance({'Jesus Christ :nws: that shit'): 0.01, 'thanks asshole i just got fired :mad:': 0.01, 'OMG hawt': 0.01})
+            elif mess.getBody().find('vidid') != -1:
+                vidid = mess.getBody().match.group('vidid')
+                rnd = random.random()
+                if rnd < 0.1:
+                    phrase = self.getRandomYoutubeComment(vidid)
+            else 
+                phrase = self.calculateChance({'pro-click zone': 0.05, 'not clicking that': 0.05, 'more like'+' http://bacolicio.us/'+url+' amirite'): 0.01 })
         
-		else
-			# chance of saying a random thing after someone types something... chance of chances
-			chance = self.calculateChance({'yeah' : 0.05, 'nah' : 0.05})
-			if chance is not None:
-				random.seed()
-				random.choice("things")
+        else
+            # chance of saying a random thing after someone types something... chance of chances
+            chance = self.calculateChance({'yeah' : 0.05, 'nah' : 0.05})
+            if chance is not None:
+                random.seed()
+                random.choice("things")
 
 
         # make shit happen
         if phrase is not None: 
-			self.send(mess.getFrom(), phrase, message_type=mess.getType())
+            self.send(mess.getFrom(), phrase, message_type=mess.getType())
 
 
 
@@ -94,7 +94,7 @@ class JabberzacMagic(BotPlugin)
         return self.calculateChance(chance)
 
 """ These functions are pulled from dungarmatic """
-  	# Imported function from jabber.py
+      # Imported function from jabber.py
     def calculateChance(self, chance):
         """chance should be a dictionary with the keys being a number like 0.25
             and the value a string to return, the keys should sum to a maximum 
