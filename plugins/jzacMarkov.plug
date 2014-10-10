@@ -1,0 +1,9 @@
+[Core]
+Name = Jabberzac Markov
+Module = jzMarkov
+
+[Python]
+Version = 3+
+
+[Documentation]
+Description = Imported from Dungarmatic trademark

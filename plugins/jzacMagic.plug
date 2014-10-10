@@ -1,0 +1,9 @@
+[Core]
+Name = Jabberzac Magic
+Module = jzMagic
+
+[Python]
+Version = 3+
+
+[Documentation]
+Description = Imported from Dungarmatic trademark
